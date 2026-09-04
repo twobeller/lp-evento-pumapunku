@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&family=Archivo+Black&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 52% 89%;
+    --foreground: 27 29% 8%;
+    --card: 42 52% 89%;
+    --card-foreground: 27 29% 8%;
+    --popover: 42 52% 89%;
+    --popover-foreground: 27 29% 8%;
+    --primary: 17 79% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 145 40% 30%;
+    --secondary-foreground: 42 52% 89%;
+    --muted: 42 43% 85%;
+    --muted-foreground: 34 12% 40%;
+    --accent: 41 65% 48%;
+    --accent-foreground: 27 29% 8%;
+    --destructive: 9 67% 49%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 27 16% 72%;
+    --input: 27 16% 72%;
+    --ring: 17 79% 54%;
+    --radius: 1rem;
+    --chart-1: 17 79% 54%;
+    --chart-2: 145 40% 30%;
+    --chart-3: 41 65% 48%;
+    --chart-4: 34 16% 47%;
+    --chart-5: 27 29% 8%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    margin: 0;
+    min-width: 320px;
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-variation-settings: 'wdth' 100;
+  }
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8622C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F2E9D3];
+  }
+  ::selection {
+    background: #e8622c;
+    color: white;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Archivo Black', 'Archivo', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+  }
+  .section-shell {
+    @apply px-5 py-20 md:py-28 lg:px-8 lg:py-32;
+  }
+  .section-title {
+    @apply font-display text-4xl uppercase leading-[0.94] tracking-[-0.045em] sm:text-5xl lg:text-6xl;
+  }
+  .eyebrow {
+    @apply mb-4 text-xs font-black uppercase tracking-[0.24em] text-[#2E6B4F];
+  }
+  .shadow-warm {
+    box-shadow: 0 8px 30px rgba(24, 20, 16, 0.1);
+  }
+  .shadow-warm-lg {
+    box-shadow: 0 18px 50px rgba(24, 20, 16, 0.17);
+  }
+}
+
+@keyframes poster-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes tribal-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes germinar {
+  from {
+    transform: translateY(22px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes check-draw {
+  from {
+    stroke-dashoffset: 60;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes drawer-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes leaf-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.poster-reveal {
+  animation: poster-reveal 0.75s cubic-bezier(0.22, 0.85, 0.35, 1) both;
+}
+.poster-reveal:nth-child(2) {
+  animation-delay: 100ms;
+}
+.poster-reveal:nth-child(3) {
+  animation-delay: 200ms;
+}
+.animate-germinar {
+  animation: germinar 0.55s ease-out both;
+}
+.animate-drawer {
+  animation: drawer-in 250ms ease-out both;
+}
+.hero-leaf {
+  animation: leaf-float 6s ease-in-out infinite;
+}
+.marquee {
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+.check-draw {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: check-draw 0.7s 0.15s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
