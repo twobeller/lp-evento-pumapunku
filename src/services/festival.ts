@@ -47,4 +47,31 @@ export async function listLeads() {
   return (await pb.collection('leads').getFullList({ sort: '-created' })) as unknown as Lead[]
 }
 
+export async function listSiteContent() {
+  return (await pb.collection('site_content').getFullList({
+    sort: 'section,key',
+  })) as unknown as import('@/types/festival').SiteContentItem[]
+}
+
+export async function updateSiteContent(
+  id: string,
+  data:
+    | Partial<Omit<import('@/types/festival').SiteContentItem, 'id' | 'created' | 'updated'>>
+    | FormData,
+) {
+  return (await pb
+    .collection('site_content')
+    .update(id, data)) as unknown as import('@/types/festival').SiteContentItem
+}
+
+export async function createSiteContent(
+  data:
+    | Partial<Omit<import('@/types/festival').SiteContentItem, 'id' | 'created' | 'updated'>>
+    | FormData,
+) {
+  return (await pb
+    .collection('site_content')
+    .create(data)) as unknown as import('@/types/festival').SiteContentItem
+}
+
 export { pb }

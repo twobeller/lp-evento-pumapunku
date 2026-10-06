@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { BarChart3, ExternalLink, Images, Link2, LogOut, Menu, X } from 'lucide-react'
+import { BarChart3, ExternalLink, FileEdit, Images, Link2, LogOut, Menu, X } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const menu = [
+  { to: '/admin/conteudo', label: 'Conteúdo (CMS)', icon: FileEdit },
   { to: '/admin/relatorios', label: 'Relatórios', icon: BarChart3 },
   { to: '/admin/edicoes', label: 'Edições', icon: Images },
   { to: '/admin/links', label: 'Links', icon: Link2 },

@@ -39,3 +39,17 @@ export type Lead = {
   consent: boolean
   created: string
 }
+
+export type SiteContentType = 'text' | 'richtext' | 'image' | 'color' | 'font' | 'url'
+
+export type SiteContentItem = {
+  id: string
+  key: string
+  value: string
+  type: SiteContentType
+  image_file?: string
+  label?: string
+  section?: string
+  created: string
+  updated: string
+}

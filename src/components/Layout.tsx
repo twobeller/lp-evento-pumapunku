@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { listLinks } from '@/services/festival'
 import type { FestivalLink } from '@/types/festival'
+import { useSiteContent } from '@/contexts/SiteContentContext'
 import { Pattern } from './BrandArt'
 
 const nav = [
@@ -18,6 +19,19 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [scrolled, setScrolled] = useState(false)
   const [links, setLinks] = useState<FestivalLink[]>([])
   const location = useLocation()
+  const { getText } = useSiteContent()
+
+  const footerTagline = getText(
+    'footer_tagline',
+    'Música, natureza e ancestralidade em uma experiência além da pista.',
+  )
+  const footerDates = getText('footer_dates', '04 & 05 JULHO')
+  const footerPlace = getText('footer_place', 'São Thomé das Letras · MG')
+  const footerCopyright = getText(
+    'footer_copyright',
+    'Puma Punku Festival · 04 & 05 Julho 2026 · São Thomé das Letras – MG',
+  )
+
   useEffect(() => {
     listLinks()
       .then(setLinks)
@@ -139,16 +153,14 @@ export default function Layout({ children }: { children: ReactNode }) {
               <br />
               Punku
             </div>
-            <p className="mt-6 max-w-sm text-sm text-[#F2E9D3]/60">
-              Música, natureza e ancestralidade em uma experiência além da pista.
-            </p>
+            <p className="mt-6 max-w-sm text-sm text-[#F2E9D3]/60">{footerTagline}</p>
           </div>
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-[.2em] text-[#E8622C]">
               Nos encontramos
             </p>
-            <p className="text-2xl font-bold">04 & 05 JULHO</p>
-            <p className="mt-1 text-[#F2E9D3]/60">São Thomé das Letras · MG</p>
+            <p className="text-2xl font-bold">{footerDates}</p>
+            <p className="mt-1 text-[#F2E9D3]/60">{footerPlace}</p>
           </div>
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-[.2em] text-[#E8622C]">
@@ -177,7 +189,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="relative mx-auto mt-14 max-w-7xl border-t border-white/10 pt-6 text-xs text-white/45">
-          Puma Punku Festival · 04 & 05 Julho 2026 · São Thomé das Letras – MG
+          {footerCopyright}
         </div>
       </footer>
     </div>

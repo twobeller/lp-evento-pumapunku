@@ -61,7 +61,7 @@
 
 @layer components {
   .font-display {
-    font-family: 'Archivo Black', 'Archivo', sans-serif;
+    font-family: var(--font-site-display, 'Archivo Black', 'Archivo', sans-serif);
     font-weight: 900;
     letter-spacing: -0.045em;
   }
